@@ -1,0 +1,12 @@
+{
+    "name": "bioub/php-object",
+    "require": {
+        "psr/log": "^1.1",
+        "zendframework/zend-servicemanager": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orsys\\": "src/"
+        }
+    }
+}
