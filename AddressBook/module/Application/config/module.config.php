@@ -1,47 +1,65 @@
 <?php
-/**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
-namespace Application;
-
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
         'routes' => [
             'home' => [
-                'type' => Literal::class,
+                'type' => \Zend\Router\Http\Literal::class,
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => \Application\Controller\IndexController::class,
                         'action'     => 'index',
                     ],
                 ],
             ],
-            'contacts' => [
-                'type'    => Segment::class,
+            'contact' => [
+                'type'    => \Zend\Router\Http\Literal::class,
                 'options' => [
                     'route'    => '/contacts',
                     'defaults' => [
-                        'controller' => Controller\ContactController::class,
+                        'controller' => \Application\Controller\ContactController::class,
                         'action'     => 'list',
                     ],
                 ],
                 'may_terminate' => true,
                 'child_routes' => [
                     'show' => [
-                        'type'    => Segment::class,
+                        'type'    => \Zend\Router\Http\Segment::class,
                         'options' => [
                             'route'    => '/:id',
                             'defaults' => [
-                                'controller' => Controller\ContactController::class,
                                 'action'     => 'show',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'update' => [
+                                'type'    => \Zend\Router\Http\Literal::class,
+                                'options' => [
+                                    'route'    => '/update',
+                                    'defaults' => [
+                                        'action'     => 'update',
+                                    ],
+                                ],
+                            ],
+                            'delete' => [
+                                'type'    => \Zend\Router\Http\Literal::class,
+                                'options' => [
+                                    'route'    => '/delete',
+                                    'defaults' => [
+                                        'action'     => 'delete',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'add' => [
+                        'type'    => \Zend\Router\Http\Literal::class,
+                        'options' => [
+                            'route'    => '/add',
+                            'defaults' => [
+                                'action'     => 'add',
                             ],
                         ],
                     ],
@@ -51,8 +69,14 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
-            Controller\ContactController::class => InvokableFactory::class,
+            \Application\Controller\IndexController::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            \Application\Controller\ContactController::class => \Application\Controller\ContactControllerFactory::class,
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            \PDO::class => \Application\Service\PDOFactory::class,
+            \Application\Service\ContactPDOService::class => \Application\Service\ContactPDOServiceFactory::class
         ],
     ],
     'view_manager' => [

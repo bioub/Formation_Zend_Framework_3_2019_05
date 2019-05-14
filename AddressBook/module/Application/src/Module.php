@@ -8,7 +8,6 @@
 namespace Application;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\ModuleManager\Feature\RouteProviderInterface;
 
 class Module implements ConfigProviderInterface
 {
