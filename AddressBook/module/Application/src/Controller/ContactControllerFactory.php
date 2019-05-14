@@ -15,7 +15,7 @@ class ContactControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new ContactController($container->get(\Application\Service\ContactPDOService::class));
+        return new ContactController($container->get(\Application\Service\ContactServiceInterface::class));
     }
 }
 

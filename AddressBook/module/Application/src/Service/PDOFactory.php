@@ -15,6 +15,12 @@ class PDOFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new \PDO('mysql:host=localhost;dbname=addressbook', 'root');
+        $configPdo = $container->get('config')['pdo'];
+
+        return new \PDO(
+            "mysql:host=$configPdo[host];dbname=$configPdo[dbname]",
+            $configPdo['username'],
+            $configPdo['password']
+        );
     }
 }

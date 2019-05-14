@@ -3,23 +3,23 @@
 namespace Application\Service;
 
 use Interop\Container\ContainerInterface;
+use Zend\Db\Adapter\AdapterInterface;
 use Zend\Hydrator\ClassMethodsHydrator;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Application\Service\ContactPDOService;
 
-class ContactPDOServiceFactory implements FactoryInterface
+class ContactZendDbServiceFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param null|array $options
-     * @return ContactPDOService
+     * @return ContactZendDbService
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $pdo = $container->get(\PDO::class);
+        $adapter = $container->get(AdapterInterface::class);
         $hydrator = $container->get('HydratorManager')->get(ClassMethodsHydrator::class);
 
-        return new ContactPDOService($pdo, $hydrator);
+        return new ContactZendDbService($adapter, $hydrator);
     }
 }

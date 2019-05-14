@@ -4,27 +4,25 @@
 namespace Application\Controller;
 
 
-use Application\Service\ContactPDOService;
+use Application\Service\ContactServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class ContactController extends AbstractActionController
 {
-    /** @var ContactPDOService */
+    /** @var ContactServiceInterface */
     protected $contactService;
 
-    public function __construct(ContactPDOService $contactService)
+    public function __construct(ContactServiceInterface $contactService)
     {
         $this->contactService = $contactService;
     }
 
     public function listAction()
     {
-        var_dump(
-            $this->contactService->getAll()
-        );
-
-        return new ViewModel();
+        return new ViewModel([
+            'contacts' => $this->contactService->getAll(),
+        ]);
     }
 
     public function showAction()

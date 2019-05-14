@@ -76,8 +76,12 @@ return [
     'service_manager' => [
         'factories' => [
             \PDO::class => \Application\Service\PDOFactory::class,
-            \Application\Service\ContactPDOService::class => \Application\Service\ContactPDOServiceFactory::class
+            \Application\Service\ContactPDOService::class => \Application\Service\ContactPDOServiceFactory::class,
+            \Application\Service\ContactZendDbService::class => \Application\Service\ContactZendDbServiceFactory::class,
         ],
+        'aliases' => [
+            \Application\Service\ContactServiceInterface::class => \Application\Service\ContactZendDbService::class,
+        ]
     ],
     'view_manager' => [
         'display_not_found_reason' => true,
