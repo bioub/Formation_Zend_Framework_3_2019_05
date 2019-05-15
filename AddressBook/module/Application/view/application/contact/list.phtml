@@ -3,11 +3,11 @@
 <table class="table">
     <?php foreach ($this->contacts as $c) : ?>
     <tr>
-        <td><?= $c->getPrenom() ?> <?= $c->getNom() ?></td>
+        <td><?= $this->escapeHtml($c->getPrenom()) ?> <?= $this->escapeHtml($c->getNom()) ?></td>
         <td>
-            <a href="<?= $this->url('contact/show', ['id' => $c->getId()]) ?>">Afficher</a>
-            <a href="<?= $this->url('contact/show/update', ['id' => $c->getId()]) ?>">Modifier</a>
-            <a href="<?= $this->url('contact/show/delete', ['id' => $c->getId()]) ?>">Supprimer</a>
+            <a href="<?= $this->url('contact/show', ['id' => $this->escapeHtml($c->getId())]) ?>">Afficher</a>
+            <a href="<?= $this->url('contact/show/update', ['id' => $this->escapeHtml($c->getId())]) ?>">Modifier</a>
+            <a href="<?= $this->url('contact/show/delete', ['id' => $this->escapeHtml($c->getId())]) ?>">Supprimer</a>
         </td>
     </tr>
     <?php endforeach; ?>

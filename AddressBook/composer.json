@@ -20,7 +20,8 @@
         "zendframework/zend-mvc-form": "^1.0",
         "zendframework/zend-mvc-plugins": "^1.0.1",
         "zendframework/zend-hydrator": "^3.0",
-        "zendframework/zend-db": "^2.10"
+        "zendframework/zend-db": "^2.10",
+        "bjyoungblood/bjy-profiler": "dev-master"
     },
     "autoload": {
         "psr-4": {

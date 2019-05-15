@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad1022245d85ecbcdc5f9b7ed5797ce9",
+    "content-hash": "423874964fcc4c78ae7b4ac0c56ec04d",
     "packages": [
+        {
+            "name": "bjyoungblood/bjy-profiler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bjyoungblood/BjyProfiler.git",
+                "reference": "1d05f9b740fd1d8d840686fea257c8c26d3f757b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bjyoungblood/BjyProfiler/zipball/1d05f9b740fd1d8d840686fea257c8c26d3f757b",
+                "reference": "1d05f9b740fd1d8d840686fea257c8c26d3f757b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "zendframework/zend-db": ">=2.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "BjyProfiler": "src/"
+                },
+                "classmap": [
+                    "./Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Youngblood",
+                    "email": "bx.youngblood@gmail.com",
+                    "homepage": "http://bjyoungblood.com/"
+                }
+            ],
+            "description": "Database profiler for Zend\\Db (also plugin for ZendDeveloperTools)",
+            "homepage": "https://github.com/bjyoungblood/BjyProfiler",
+            "keywords": [
+                "db",
+                "profiler",
+                "zdt",
+                "zf2"
+            ],
+            "time": "2014-09-04T01:22:02+00:00"
+        },
         {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
@@ -3667,7 +3715,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "zendframework/zend-component-installer": 20
+        "zendframework/zend-component-installer": 20,
+        "bjyoungblood/bjy-profiler": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
