@@ -3,7 +3,7 @@
 namespace Application\Service;
 
 use Interop\Container\ContainerInterface;
-use Zend\Hydrator\ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Application\Service\ContactPDOService;
 
@@ -18,7 +18,7 @@ class ContactPDOServiceFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $pdo = $container->get(\PDO::class);
-        $hydrator = $container->get('HydratorManager')->get(ClassMethodsHydrator::class);
+        $hydrator = $container->get('HydratorManager')->get(ClassMethods::class);
 
         return new ContactPDOService($pdo, $hydrator);
     }

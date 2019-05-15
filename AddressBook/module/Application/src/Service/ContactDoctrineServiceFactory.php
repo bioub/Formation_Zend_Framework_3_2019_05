@@ -2,24 +2,22 @@
 
 namespace Application\Service;
 
+use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
-use Zend\Db\Adapter\AdapterInterface;
-use Zend\Hydrator\ClassMethods;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class ContactZendDbServiceFactory implements FactoryInterface
+class ContactDoctrineServiceFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param null|array $options
-     * @return ContactZendDbService
+     * @return ContactDoctrineService
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $adapter = $container->get(AdapterInterface::class);
-        $hydrator = $container->get('HydratorManager')->get(ClassMethods::class);
+        $em = $container->get(EntityManager::class);
 
-        return new ContactZendDbService($adapter, $hydrator);
+        return new ContactDoctrineService($em);
     }
 }

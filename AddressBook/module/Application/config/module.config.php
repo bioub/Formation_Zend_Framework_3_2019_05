@@ -78,9 +78,10 @@ return [
             \PDO::class => \Application\Service\PDOFactory::class,
             \Application\Service\ContactPDOService::class => \Application\Service\ContactPDOServiceFactory::class,
             \Application\Service\ContactZendDbService::class => \Application\Service\ContactZendDbServiceFactory::class,
+            \Application\Service\ContactDoctrineService::class => \Application\Service\ContactDoctrineServiceFactory::class,
         ],
         'aliases' => [
-            \Application\Service\ContactServiceInterface::class => \Application\Service\ContactZendDbService::class,
+            \Application\Service\ContactServiceInterface::class => \Application\Service\ContactDoctrineService::class,
         ]
     ],
     'view_manager' => [

@@ -3,23 +3,35 @@
 
 namespace Application\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="contacts")
+ */
 class Contact
 {
-    /** @var int */
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     protected $id;
 
-    /** @var string */
+    /** @ORM\Column(length=40) */
     protected $prenom;
 
-    /** @var string */
+    /** @ORM\Column(length=40) */
     protected $nom;
 
-    /** @var string */
+    /** @ORM\Column(length=80, nullable=true) */
     protected $email;
 
-    /** @var string */
+    /** @ORM\Column(length=20, nullable=true) */
     protected $telephone;
+
+    /** @ORM\Column(name="date_naissance", type="date", nullable=true) */
+    protected $dateNaissance;
 
     /**
      * @return int
@@ -108,6 +120,24 @@ class Contact
     public function setTelephone(string $telephone = null): Contact
     {
         $this->telephone = $telephone;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * @param mixed $dateNaissance
+     * @return Contact
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
         return $this;
     }
 
