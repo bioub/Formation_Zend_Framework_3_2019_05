@@ -46,6 +46,7 @@ class ContactForm extends Form
         $element->setLabel('Date de naissance');
         $element->setOptions([
             'min_year' => date('Y') - 120,
+            'create_empty_option' => true,
         ]);
 
         $this->add($element);
