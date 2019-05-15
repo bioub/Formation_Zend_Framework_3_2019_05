@@ -1,1 +1,21 @@
 <h2>Ajouter un contact</h2>
+
+<?= $this->form()->openTag($this->contactForm) ?>
+    <?= $this->formRow($this->contactForm->get('prenom')->setAttribute('class', 'form-control')) ?>
+
+    <div>
+        <?= $this->formLabel($this->contactForm->get('nom')) ?>
+        <?= $this->formElement($this->contactForm->get('nom')->setAttribute('class', 'form-control')) ?>
+        <?= $this->formElementErrors($this->contactForm->get('nom')) ?>
+    </div>
+
+    <?= $this->formRow($this->contactForm->get('email')) ?>
+    <?= $this->formRow($this->contactForm->get('telephone')) ?>
+    <?= $this->formRow($this->contactForm->get('dateNaissance')) ?>
+
+
+    <div>
+        <button class="btn btn-primary">Ajouter</button>
+    </div>
+
+<?= $this->form()->closeTag() ?>

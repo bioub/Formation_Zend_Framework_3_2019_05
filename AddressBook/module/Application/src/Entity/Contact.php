@@ -36,7 +36,7 @@ class Contact
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -54,7 +54,7 @@ class Contact
     /**
      * @return string
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -63,7 +63,7 @@ class Contact
      * @param string $prenom
      * @return Contact
      */
-    public function setPrenom(string $prenom): Contact
+    public function setPrenom(?string $prenom): Contact
     {
         $this->prenom = $prenom;
         return $this;
@@ -72,7 +72,7 @@ class Contact
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -81,7 +81,7 @@ class Contact
      * @param string $nom
      * @return Contact
      */
-    public function setNom(string $nom): Contact
+    public function setNom(?string $nom): Contact
     {
         $this->nom = $nom;
         return $this;
@@ -90,7 +90,7 @@ class Contact
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -99,7 +99,7 @@ class Contact
      * @param string $email
      * @return Contact
      */
-    public function setEmail(string $email = null): Contact
+    public function setEmail(?string $email): Contact
     {
         $this->email = $email;
         return $this;
@@ -108,7 +108,7 @@ class Contact
     /**
      * @return string
      */
-    public function getTelephone(): string
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
@@ -117,7 +117,7 @@ class Contact
      * @param string $telephone
      * @return Contact
      */
-    public function setTelephone(string $telephone = null): Contact
+    public function setTelephone(?string $telephone): Contact
     {
         $this->telephone = $telephone;
         return $this;

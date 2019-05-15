@@ -28,4 +28,17 @@ class ContactDoctrineService implements ContactServiceInterface
 
         return $repo->findAll();
     }
+
+    public function getById($id): Contact
+    {
+        $repo = $this->em->getRepository(Contact::class);
+
+        return $repo->find($id);
+    }
+
+    public function insert($contact)
+    {
+        $this->em->persist($contact);
+        $this->em->flush();
+    }
 }

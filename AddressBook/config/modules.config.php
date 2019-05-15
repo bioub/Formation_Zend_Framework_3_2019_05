@@ -13,6 +13,7 @@
 return [
     'Zend\Cache',
     'Zend\Paginator',
+    'Zend\Filter',
     'Zend\Db',
     'Zend\Mvc\Plugin\FlashMessenger',
     'Zend\Form',

@@ -1,1 +1,16 @@
 <h2>Afficher un contact</h2>
+
+<p>Prénom : <?= $this->escapeHtml($this->contact->getPrenom()) ?></p>
+<p>Nom : <?= $this->escapeHtml($this->contact->getNom()) ?></p>
+
+<?php if ($this->contact->getEmail()) : ?>
+<p>Email : <?= $this->escapeHtml($this->contact->getEmail()) ?></p>
+<?php endif; ?>
+
+<?php if ($this->contact->getTelephone()) : ?>
+<p>Téléphone : <?= $this->escapeHtml($this->contact->getTelephone()) ?></p>
+<?php endif; ?>
+
+<?php if ($this->contact->getDateNaissance()) : ?>
+<p>Date de naissance : <?= $this->escapeHtml($this->contact->getDateNaissance()->format('d/m/Y')) ?></p>
+<?php endif; ?>
