@@ -20,10 +20,20 @@ class ContactController extends AbstractActionController
     /** @var ContactServiceInterface */
     protected $contactService;
 
-    public function __construct(ContactServiceInterface $contactService)
+    /** @var ContactForm */
+    protected $contactForm;
+
+    /**
+     * ContactController constructor.
+     * @param ContactServiceInterface $contactService
+     * @param ContactForm $contactForm
+     */
+    public function __construct(ContactServiceInterface $contactService, ContactForm $contactForm)
     {
         $this->contactService = $contactService;
+        $this->contactForm = $contactForm;
     }
+
 
     public function listAction()
     {
@@ -45,21 +55,12 @@ class ContactController extends AbstractActionController
 
     public function addAction()
     {
-        // TODO créer la fabrique et l'enregistrer (form_element_manager)
-        $contactForm = new ContactForm();
-        $contactForm->setHydrator(new ClassMethods()); // TODO injecter l'hydrateur DoctrineObject
-
-        $contact = new Contact();
-        $contactForm->setObject($contact);
-
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
+            $this->contactForm->setData($data);
 
-            $contactForm->setData($data);
-
-            if ($contactForm->isValid()) {
-                // TODO
-                $contact->setDateNaissance(new \DateTime($contact->getDateNaissance()));
+            if ($this->contactForm->isValid()) {
+                $contact = $this->contactForm->getObject();
 
                 $this->contactService->insert($contact);
 
@@ -70,10 +71,10 @@ class ContactController extends AbstractActionController
         }
 
         // OBLIGATOIRE pour le DateSelect
-        $contactForm->prepare();
+        $this->contactForm->prepare();
 
         return new ViewModel([
-            'contactForm' => $contactForm,
+            'contactForm' => $this->contactForm,
         ]);
     }
 

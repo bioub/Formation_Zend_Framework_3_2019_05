@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true">
+<phpunit colors="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.5/phpunit.xsd"
+>
     <testsuites>
         <testsuite name="ZendSkeletonApplication Test Suite">
             <directory>./module/Application/test</directory>
         </testsuite>
     </testsuites>
+    
+    <filter>
+        <whitelist>
+            <directory>./module/Application/src</directory>
+            <exclude>
+                <directory>./module/Application/src/view</directory>
+                <directory>./module/Application/src/config</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="data/coverage" />
+    </logging>
 </phpunit>

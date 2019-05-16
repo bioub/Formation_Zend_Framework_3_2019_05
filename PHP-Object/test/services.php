@@ -11,7 +11,11 @@ $container->setFactory(\Psr\Log\LoggerInterface::class, function(\Zend\ServiceMa
     return new \Orsys\Logger\Logger($writer);
 });
 
-$container->setFactory(\Orsys\Writer\NullWriter::class, \Zend\ServiceManager\Factory\InvokableFactory::class);
+
+$container->setService(\Orsys\Writer\NullWriter::class, new \Orsys\Writer\NullWriter());
+// $container->setFactory(\Orsys\Writer\NullWriter::class, \Zend\ServiceManager\Factory\InvokableFactory::class);
+
+$container->setAlias('logger', \Psr\Log\LoggerInterface::class);
 
 return $container;
 

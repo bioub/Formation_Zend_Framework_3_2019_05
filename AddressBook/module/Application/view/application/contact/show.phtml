@@ -14,3 +14,7 @@
 <?php if ($this->contact->getDateNaissance()) : ?>
 <p>Date de naissance : <?= $this->escapeHtml($this->contact->getDateNaissance()->format('d/m/Y')) ?></p>
 <?php endif; ?>
+
+<?php if ($this->contact->getSociete()) : ?>
+    <p>Société : <?= $this->escapeHtml($this->contact->getSociete()->getNom()) ?></p>
+<?php endif; ?>

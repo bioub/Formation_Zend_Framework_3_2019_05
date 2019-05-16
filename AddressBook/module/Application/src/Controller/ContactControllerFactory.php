@@ -2,6 +2,7 @@
 
 namespace Application\Controller;
 
+use Application\Form\ContactForm;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -15,7 +16,10 @@ class ContactControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new ContactController($container->get(\Application\Service\ContactServiceInterface::class));
+        $service = $container->get(\Application\Service\ContactServiceInterface::class);
+        $form = $container->get('FormElementManager')->get(ContactForm::class);
+
+        return new ContactController($service, $form);
     }
 }
 

@@ -33,7 +33,7 @@ class ContactDoctrineService implements ContactServiceInterface
     {
         $repo = $this->em->getRepository(Contact::class);
 
-        return $repo->find($id);
+        return $repo->findWithSociete($id);
     }
 
     public function insert($contact)

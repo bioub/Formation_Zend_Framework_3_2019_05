@@ -14,6 +14,7 @@ return [
     'Zend\Cache',
     'Zend\Paginator',
     'Zend\Filter',
+    'Zend\InputFilter',
     'Zend\Db',
     'Zend\Mvc\Plugin\FlashMessenger',
     'Zend\Form',

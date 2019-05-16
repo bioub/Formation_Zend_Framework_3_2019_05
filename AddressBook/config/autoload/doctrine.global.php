@@ -2,6 +2,14 @@
 
 return [
     'doctrine' => [
+        'configuration' => [
+            'orm_default' => [
+                'query_cache'       => 'filesystem',
+                'result_cache'      => 'filesystem',
+                'metadata_cache'    => 'filesystem',
+                'hydration_cache'   => 'filesystem',
+            ],
+        ],
         'connection' => [
             // default connection name
             'orm_default' => [

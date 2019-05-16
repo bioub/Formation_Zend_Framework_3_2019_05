@@ -117,7 +117,17 @@ return [
         ],
         'factories' => [
             \Application\View\Helper\MenuItem::class => \Application\View\Helper\MenuItemFactory::class,
-        ]
+        ],
+    ],
+    'form_elements' => [
+        'factories' => [
+            \Application\Form\ContactForm::class => \Application\Form\ContactFormFactory::class,
+        ],
+    ],
+    'input_filters' => [
+        'factories' => [
+            \Application\InputFilter\ContactInputFilter::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+        ],
     ],
     'view_manager' => [
         'display_not_found_reason' => true,

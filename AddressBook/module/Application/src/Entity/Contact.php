@@ -6,7 +6,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Application\Repository\ContactRepository")
  * @ORM\Table(name="contacts")
  */
 class Contact
@@ -32,6 +32,9 @@ class Contact
 
     /** @ORM\Column(name="date_naissance", type="date", nullable=true) */
     protected $dateNaissance;
+
+    /** @ORM\ManyToOne(targetEntity="Application\Entity\Societe") */
+    protected $societe;
 
     /**
      * @return int
@@ -138,6 +141,24 @@ class Contact
     public function setDateNaissance($dateNaissance)
     {
         $this->dateNaissance = $dateNaissance;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+
+    /**
+     * @param mixed $societe
+     * @return Contact
+     */
+    public function setSociete($societe)
+    {
+        $this->societe = $societe;
         return $this;
     }
 

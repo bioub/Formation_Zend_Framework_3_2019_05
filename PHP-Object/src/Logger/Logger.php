@@ -23,4 +23,9 @@ class Logger implements LoggerInterface
         $now = date('Y-m-d');
         $this->writer->write("[$level] $now - $message\n");
     }
+
+    public function __invoke($level, $message, array $context = array())
+    {
+        $this->log($level, $message, $context);
+    }
 }

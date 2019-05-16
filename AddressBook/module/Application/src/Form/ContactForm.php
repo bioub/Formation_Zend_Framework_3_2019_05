@@ -4,17 +4,34 @@
 namespace Application\Form;
 
 
+use Application\Entity\Contact;
+use Application\Entity\Societe;
+use Doctrine\Common\Persistence\ObjectManager;
+use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Form\Element\DateSelect;
 use Zend\Form\Element\Email;
 use Zend\Form\Element\Tel;
 use Zend\Form\Element\Text;
 use Zend\Form\Form;
+use Zend\Hydrator\HydratorInterface;
+use Zend\InputFilter\InputFilterInterface;
 
 class ContactForm extends Form
 {
-    public function __construct($name = null, $options = [])
+    /**
+     * ContactForm constructor.
+     * @param HydratorInterface $hydrator
+     * @param InputFilterInterface $inputFilter
+     * @param ObjectManager $em
+     */
+    public function __construct(HydratorInterface $hydrator, InputFilterInterface $inputFilter, ObjectManager $em)
     {
         parent::__construct('contactForm');
+
+        $this->setHydrator($hydrator);
+        $this->setInputFilter($inputFilter);
+
+        $this->setObject(new Contact());
 
         // en instanciant la classe
         $element = new Text('prenom');
@@ -50,6 +67,18 @@ class ContactForm extends Form
         ]);
 
         $this->add($element);
+
+        $element = new ObjectSelect('societe');
+        $element->setOptions([
+            'object_manager'     => $em,
+            'target_class'       => Societe::class,
+            'property'           => 'nom',
+            'display_empty_item' => true,
+            'empty_item_label'   => '-- Pas de société --',
+        ]);
+
+        $this->add($element);
     }
+
 
 }
