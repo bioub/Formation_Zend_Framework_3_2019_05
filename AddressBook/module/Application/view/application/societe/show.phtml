@@ -1,0 +1,7 @@
+<h2>Détails d'une société</h2>
+
+<p>Nom : <?= $this->escapeHtml($this->societe->getNom()) ?></p>
+
+<?php if ($this->societe->getVille()) : ?>
+<p>Ville : <?= $this->escapeHtml($this->societe->getVille()) ?></p>
+<?php endif; ?>

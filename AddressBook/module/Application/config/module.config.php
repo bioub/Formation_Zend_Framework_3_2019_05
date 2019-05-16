@@ -65,13 +65,39 @@ return [
                     ],
                 ],
             ],
+            'societe' => [
+                'type'    => \Zend\Router\Http\Literal::class,
+                'options' => [
+                    'route'    => '/societes',
+                    'defaults' => [
+                        'controller' => \Application\Controller\SocieteController::class,
+                        'action'     => 'list',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'show' => [
+                        'type'    => \Zend\Router\Http\Segment::class,
+                        'options' => [
+                            'route'    => '/:id',
+                            'defaults' => [
+                                'action'     => 'show',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
         'factories' => [
             \Application\Controller\IndexController::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
             \Application\Controller\ContactController::class => \Application\Controller\ContactControllerFactory::class,
+           // \Application\Controller\SocieteController::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
+        'abstract_factories' => [
+            \Application\Controller\ControllerAbstractFactory::class
+        ]
     ],
     'service_manager' => [
         'factories' => [
@@ -79,9 +105,18 @@ return [
             \Application\Service\ContactPDOService::class => \Application\Service\ContactPDOServiceFactory::class,
             \Application\Service\ContactZendDbService::class => \Application\Service\ContactZendDbServiceFactory::class,
             \Application\Service\ContactDoctrineService::class => \Application\Service\ContactDoctrineServiceFactory::class,
+            \Application\Service\SocieteService::class => \Application\Service\SocieteServiceFactory::class,
         ],
         'aliases' => [
             \Application\Service\ContactServiceInterface::class => \Application\Service\ContactDoctrineService::class,
+        ]
+    ],
+    'view_helpers' => [
+        'aliases' => [
+            'menuItem' => \Application\View\Helper\MenuItem::class,
+        ],
+        'factories' => [
+            \Application\View\Helper\MenuItem::class => \Application\View\Helper\MenuItemFactory::class,
         ]
     ],
     'view_manager' => [

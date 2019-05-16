@@ -1,0 +1,9 @@
+<h2>Liste des sociétés</h2>
+
+<div class="list-group">
+    <?php foreach ($this->societes as $s) : ?>
+    <a href="<?= $this->url('societe/show', ['id' => $this->escapeHtml($s->getId())]) ?>" class="list-group-item">
+        <?= $this->escapeHtml($s->getNom()) ?>
+    </a>
+    <?php endforeach; ?>
+</div>
